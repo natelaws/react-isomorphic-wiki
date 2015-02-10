@@ -17,6 +17,17 @@ server.route({
     }
 });
 
+server.route({
+    method: 'GET',
+    path: '/two',
+    handler: function (request, reply) {
+        reply('Hello, world! two');
+    },
+    config: {
+        description: 'Landing page',
+        tags: ['api']
+    }
+});
 
 
 server.route({
@@ -29,7 +40,7 @@ server.route({
     config: {
         validate: {
             params: {
-                user: Joi.string().min(3).max(10)
+                user: Joi.string().min(3).max(10).description("The user name")
             },
             query: {
                 foo: Joi.string().min(1).max(4).optional()
@@ -45,6 +56,28 @@ server.route({
 
 server.register({register: require('lout')}, function (err) {
 });
+
+
+
+var pack = require('../package'),
+    swaggerOptions = {
+        basePath: 'http://localhost:3000',
+        apiVersion: pack.version,
+        endpoint: '/swagger'
+    };
+
+server.register({
+    register: require('hapi-swagger'),
+    options: swaggerOptions
+}, function (err) {
+    if (err) {
+        server.log(['error'], 'hapi-swagger load error: ' + err)
+    } else {
+        server.log(['start'], 'hapi-swagger interface loaded')
+    }
+});
+
+
 
 server.register({
     register: Good,
