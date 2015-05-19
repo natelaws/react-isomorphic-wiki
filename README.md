@@ -1,11 +1,21 @@
 # react isomorphic wiki
 
-Uses:
+### How to run
+
+ `npm start`
+
+### Tech used
 
  - react
  - webpack
      - http://gaearon.github.io/react-hot-loader/
  - hapi
- - mongodb
- - flux?
- - redis?
+ - flux (alt)?
+
+
+### Data models
+
+Todomvc only has one model, we want to demo react with more than one.
+
+ - Users
+ - Docs
