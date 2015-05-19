@@ -22,11 +22,10 @@ var config = {
     entry: [
         'webpack-dev-server/client?http://localhost:' + hotLoadPort,
         'webpack/hot/dev-server',
-        './components/main.js'
+        './gui/index.jsx'
     ],
     output: {
-        //path: path.join(__dirname, '/static/public/build'),
-        path: path.join(__dirname, '/build'),
+        path: path.join(__dirname, '/static/public/build'),
         filename: 'bundle.js',
         publicPath: 'http://localhost:' + hotLoadPort + '/static/build/'
     },

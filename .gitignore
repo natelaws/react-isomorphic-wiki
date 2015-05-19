@@ -1,4 +1,7 @@
 .DS_Store
 node_modules
-build
 npm-debug.log
+
+
+# ignore built assets
+static/public/build

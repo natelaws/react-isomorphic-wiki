@@ -1,13 +1,17 @@
 var Joi = require('joi');
 
 var routes = [{
+    // server static files
+    path: '/static/{param*}',
     method: 'GET',
-    path: '/',
-    handler: function (request, reply) {
-        reply('Hello, world!');
+    handler: {
+        proxy: {
+            host: 'localhost',
+            port: 8885
+        }
     },
     config: {
-        description: 'Landing page'
+        auth: false
     }
 }, {
     method: 'GET',
@@ -40,6 +44,11 @@ var routes = [{
         tags: ['api', 'greeting']
 
     }
-}];
+}, {    // default route which most things fall under
+    path: '/{p*}',
+    method: 'GET',  //TODO consider also handling POST for full isomorphic?
+    handler: require('./handlers/react')
+}
+];
 
 module.exports = routes;
