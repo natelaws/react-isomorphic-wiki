@@ -3,8 +3,8 @@ require('node-jsx').install({extension: '.jsx', harmony: true});
 var React = require('react');
 var Router = require('react-router');
 
-var routes = require('../../gui/routes.jsx'); //react-router definition
-var htmlComponent = require('../../gui/Html.jsx');
+var routes = require('../../../gui/routes.jsx'); //react-router definition
+var htmlComponent = require('../../../gui/Html.jsx');
 
 module.exports = function renderReact(request, reply) {
     //console.log(request.url.path);

@@ -5,3 +5,6 @@ npm-debug.log
 
 # ignore built assets
 static/public/build
+
+# temp ignoring this file for now...
+db.json

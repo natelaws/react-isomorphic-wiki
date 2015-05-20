@@ -5,7 +5,7 @@ module.exports = [
     {
         register: require('hapi-swagger'),
         options: {
-            basePath: 'http://localhost:3000',
+            basePath: 'http://localhost:3001',
             endpoint: '/swagger'
         }
     },
@@ -14,7 +14,7 @@ module.exports = [
         options: {
             reporters: [{
                 reporter: require('good-console'),
-                events: {log: '*', response: '*'}
+                events: {log: '*', response: '*', request: '*'}
             }]
         }
     }

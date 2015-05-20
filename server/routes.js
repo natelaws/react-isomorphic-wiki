@@ -15,12 +15,69 @@ var routes = [{
     }
 }, {
     method: 'GET',
-    path: '/two',
-    handler: function (request, reply) {
-        reply('Hello, world! two');
-    },
+    path: '/api/user',
+    handler: require('./handlers/user/handleApiUser'),
     config: {
-        description: 'Landing page',
+        description: 'Get users',
+        tags: ['api']
+    }
+}, {
+    method: 'GET',
+    path: '/api/user/{id}',
+    handler: require('./handlers/user/handleApiUser'),
+    config: {
+        validate: {
+            params: {
+                id: Joi.string().optional().description("The user id")
+            }
+        },
+        description: 'Get user',
+        tags: ['api']
+    }
+}, {
+    method: 'POST',
+    path: '/api/user',
+    handler: require('./handlers/user/handleApiUser'),
+    config: {
+        validate: {
+            payload: {
+                id: Joi.string(),
+                name: Joi.string()
+            }
+        },
+        description: 'Create user',
+        tags: ['api']
+    }
+}, {
+    method: 'PUT',
+    path: '/api/user/{id}',
+    handler: require('./handlers/user/handleApiUser'),
+    config: {
+        validate: {
+            params: {
+                id: Joi.string().description("The user id")
+            },
+            payload: {
+                id: Joi.string(),
+                test: Joi.string(),
+                name: Joi.string()
+
+            }
+        },
+        description: 'Edit user',
+        tags: ['api']
+    }
+}, {
+    method: 'DELETE',
+    path: '/api/user/{id}',
+    handler: require('./handlers/user/handleApiUser'),
+    config: {
+        validate: {
+            params: {
+                id: Joi.string().description("The user id")
+            }
+        },
+        description: 'Delete user',
         tags: ['api']
     }
 }, {
@@ -47,7 +104,7 @@ var routes = [{
 }, {    // default route which most things fall under
     path: '/{p*}',
     method: 'GET',  //TODO consider also handling POST for full isomorphic?
-    handler: require('./handlers/react')
+    handler: require('./handlers/render/react')
 }
 ];
 
