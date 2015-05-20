@@ -1,8 +1,6 @@
 var React = require('react');
 
-if (process.env.CLIENT) {
-    require('./base.scss');
-}
+require('./base.scss');
 
 var AppRoot = React.createClass({
 

@@ -3,6 +3,12 @@ var Hapi = require('hapi');
 var server = new Hapi.Server({});
 server.connection({port: 3001});
 
+// Don't do anything when requiring .scss files on the server side
+// Webpack will bundle then into a .css file for the client side
+require.extensions['.scss'] = function (module, filename) {
+    module._compile('', filename);
+};
+
 
 module.exports.start = function () {
 
