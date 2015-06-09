@@ -1,4 +1,5 @@
 var React = require('react');
+var {RouteHandler} = require('react-router');
 
 require('./base.scss');
 
@@ -6,7 +7,11 @@ var AppRoot = React.createClass({
 
     render() {
         console.log(this.props);
-        return <h1>test...</h1>
+        return (<div>
+            test...
+            <RouteHandler {...this.props} />
+
+        </div>);
     }
 });
 
