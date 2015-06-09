@@ -15,7 +15,7 @@ var Html = React.createClass({
             <body>
                 <div id="app-root" dangerouslySetInnerHTML={{__html: this.props.markup}} />
 
-                <script dangerouslySetInnerHTML={{__html:`var BOOTSTRAP = ${this.props.data};`}}/>
+                <script dangerouslySetInnerHTML={{__html: `var BOOTSTRAP = ${this.props.data};`}}/>
                 <script src={"/static/build/bundle.js"}/>
 
             </body>

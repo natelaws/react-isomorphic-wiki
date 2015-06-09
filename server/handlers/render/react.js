@@ -4,24 +4,26 @@ var React = require('react');
 var Router = require('react-router');
 
 var routes = require('../../../gui/routes.jsx'); //react-router definition
-var htmlComponent = require('../../../gui/Html.jsx');
+var htmlComponent = React.createFactory(require('../../../gui/Html.jsx'));
 
 module.exports = function renderReact(request, reply) {
-    //console.log(request.url.path);
 
-    var server = request.server;
+
 
     var router = Router.create({
         routes: routes,
         location: request.url.path,
         onAbort: function (redirect) {
-            server.log('warn', 'on abort ' + redirect);
+            request.log('warn', 'on abort ' + redirect);
 
-            //cb({redirect});
+            //TODO
+            //return reply.redirect(redirect);
         },
         onError: function (err) {
-            server.log('error', 'Routing Error');
-            server.log('error', err);
+            request.log('error', 'Routing Error');
+            request.log('error', err);
+
+            //TODO
         }
     });
 
@@ -32,10 +34,6 @@ module.exports = function renderReact(request, reply) {
     router.run(function (Handler, state) {
 
         Handler = React.createFactory(Handler);
-
-        //if (state.routes[state.routes.length - 1].name === 'not-found') {
-        //    return reply('<!DOCTYPE html>' + React.renderToString(Handler())).code(404);
-        //}
 
         var data = {"test": true};
 
@@ -52,7 +50,7 @@ module.exports = function renderReact(request, reply) {
             markup: React.renderToString(Handler(data))
         };
 
-        var res = '<!DOCTYPE html>' + React.renderToStaticMarkup(React.createFactory(htmlComponent)(props));
+        var res = '<!DOCTYPE html>' + React.renderToStaticMarkup(htmlComponent(props));
         var rep = reply(res);
 
         if (state.routes[state.routes.length - 1].name === 'not-found') {
