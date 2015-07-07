@@ -1,5 +1,3 @@
-require('node-jsx').install({extension: '.jsx', harmony: true});
-
 var React = require('react');
 var Router = require('react-router');
 
