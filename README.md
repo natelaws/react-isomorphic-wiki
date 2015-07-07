@@ -3,6 +3,7 @@
 ### How to run
 
  `npm start`
+ `open http://localhost:3001`
 
 ### Tech used
 
